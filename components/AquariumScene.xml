@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="AquariumScene" extends="Scene">
+  <script type="text/brightscript" uri="AquariumScene.brs"/>
+  <children>
+    <Poster id="bg" uri="pkg:/images/background.jpg" width="1920" height="1080"/>
+    <Group id="bubbleLayer"/>
+    <Group id="fishLayer"/>
+  </children>
+</component>

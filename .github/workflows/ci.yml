@@ -9,11 +9,23 @@ permissions:
   contents: read
 
 jobs:
+  # Fails if any action isn't pinned to a full commit SHA; run `pinact run` locally to fix
+  pinact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: suzuki-shunsuke/pinact-action@b1a1f46bb10f2908950d95f626ca8cc109e2cf7d # v3.1.0
+        with:
+          fix: "false"
+          verify: "true"
+
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           cache: npm
@@ -27,7 +39,7 @@ jobs:
       # Same contents install.sh sideloads, so a PR build can be installed straight from the run
       - name: Package
         run: zip -qr aquarium.zip manifest source components images
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           path: aquarium.zip
           archive: false

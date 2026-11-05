@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stand-in for the built-in Roku node, which @rokucommunity/brs does not implement -->
+<component name="Vector2DFieldInterpolator" extends="Node">
+  <interface>
+    <field id="fieldToInterp" type="string"/>
+    <field id="key" type="floatarray"/>
+    <field id="keyValue" type="array"/>
+  </interface>
+</component>

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Lint BrightScript
+        run: npm run lint
+      - name: Lint install.sh
+        run: shellcheck install.sh
+      - name: Test
+        run: npm test
+      # Same contents install.sh sideloads, so a PR build can be installed straight from the run
+      - name: Package
+        run: zip -qr aquarium.zip manifest source components images
+      - uses: actions/upload-artifact@v7
+        with:
+          path: aquarium.zip
+          archive: false

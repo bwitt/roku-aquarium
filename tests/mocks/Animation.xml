@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stand-in for the built-in Roku node, which @rokucommunity/brs does not implement -->
+<component name="Animation" extends="Node">
+  <interface>
+    <field id="duration" type="float"/>
+    <field id="delay" type="float"/>
+    <field id="repeat" type="boolean"/>
+    <field id="easeFunction" type="string"/>
+    <field id="control" type="string"/>
+    <field id="state" type="string" value="stopped"/>
+  </interface>
+</component>
